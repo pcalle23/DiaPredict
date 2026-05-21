@@ -52,8 +52,10 @@ public class AgentePaciente extends Agent {
         try {
             DFAgentDescription[] resultNutri = DFService.search(this, templateNutri);
             if (resultNutri.length > 0) {
-                agenteNutricionistaAID = resultNutri[0].getName();
-                System.out.println("[Paciente] -> Agente Nutricionista localizado.");
+            	//logica de mas de 1 nutri 
+            	int indiceAleatorio = (int) (Math.random() * resultNutri.length);
+                agenteNutricionistaAID = resultNutri[indiceAleatorio].getName();
+                System.out.println("[Paciente] -> " + getLocalName() + " ha sido asignado al " + agenteNutricionistaAID.getLocalName());
             }
 
             DFAgentDescription[] resultPred = DFService.search(this, templatePred);
