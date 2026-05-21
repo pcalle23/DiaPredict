@@ -6,8 +6,8 @@ import jade.core.Runtime;
 import jade.wrapper.AgentContainer;
 import jade.wrapper.AgentController;
 import jade.wrapper.StaleProxyException;
-import javax.swing.SwingUtilities;
-import paquete.gui.VentanaPaciente;
+//import javax.swing.SwingUtilities;
+//import paquete.gui.VentanaPaciente;
 
 /**
  * Clase principal de DiaPredict.
@@ -41,14 +41,14 @@ public class Launcher {
 
             // Agente principal: recibe los datos de la GUI y coordina el flujo
             AgentController agentePaciente = mainContainer.createNewAgent(
-                "AgentePaciente",
+                "AgentePaciente_1",
                 "paquete.agentes.AgentePaciente",
                 null
             );
 
             // Agente nutricionista: analiza carbohidratos y glucosa
             AgentController agenteNutricionista = mainContainer.createNewAgent(
-                "AgenteNutricionista",
+                "AgenteNutricionista_1",
                 "paquete.agentes.AgenteNutricionista",
                 null
             );
@@ -73,12 +73,15 @@ public class Launcher {
             agentePredictor.start();
             agenteNotificador.start();
 
-            // 6. Abrir la ventana gráfica en el hilo de Swing
+            // 6. Abrir la ventana gráfica en el hilo 
+            
+            System.out.println("[Launcher] -> Sistema base iniciado correctamente.");
+            System.out.println("[Launcher] -> Usa la interfaz RMA de JADE para añadir pacientes o nutricionistas.");
             // Le pasamos el AgentePaciente para que pueda enviarle los datos
-            SwingUtilities.invokeLater(() -> {
-                VentanaPaciente ventana = new VentanaPaciente(agentePaciente);
-                ventana.setVisible(true);
-            });
+           // SwingUtilities.invokeLater(() -> {
+             //   VentanaPaciente ventana = new VentanaPaciente(agentePaciente);
+             //   ventana.setVisible(true);
+          //  });
 
         } catch (StaleProxyException e) {
             System.err.println("[Launcher] Error al crear o arrancar los agentes: " + e.getMessage());

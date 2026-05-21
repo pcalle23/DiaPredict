@@ -31,6 +31,20 @@ public class AgentePaciente extends Agent {
         // Anadimos los dos comportamientos de escucha
         addBehaviour(new EscucharInterfaz());
         addBehaviour(new EscucharRespuestas());
+        
+        System.out.println("[Paciente] -> Abriendo interfaz gráfica para " + getLocalName());
+        try {
+            // obtengo el "controlador externo" del agente, que es lo que pide la VentanaPaciente
+            jade.wrapper.AgentController miControlador = getContainerController().getAgent(getLocalName());
+            
+            javax.swing.SwingUtilities.invokeLater(() -> {
+                ventana = new paquete.gui.VentanaPaciente(miControlador); // le pasamos el controlador
+                ventana.setTitle("DiaPredict - " + getLocalName());
+                ventana.setVisible(true);
+            });
+        } catch (Exception e) {
+            System.err.println("Error al arrancar la interfaz del paciente: " + e.getMessage());
+        }
     }
 
     @Override
