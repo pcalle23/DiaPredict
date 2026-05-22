@@ -63,7 +63,7 @@ Para que el `AgentePredictor` pueda entrenar el modelo de Machine Learning local
 
 * En el **Package Explorer** de Eclipse, asegúrese de que el archivo `diabetes.arff` se encuentra físicamente en la raíz del proyecto.
 
-- *¿Por qué es obligatorio?* El `AgentePredictor` carga este archivo utilizando una ruta relativa en Java. Si el archivo 	se mueve dentro de `src` o se borra de la raíz, la librería Weka lanzará una excepción de archivo no encontrado (`FileNotFoundException`) y la Inteligencia Artificial no podrá emitir diagnósticos.
+> *¿Por qué es obligatorio?* El `AgentePredictor` carga este archivo utilizando una ruta relativa en Java. Si el archivo 	se mueve dentro de `src` o se borra de la raíz, la librería Weka lanzará una excepción de archivo no encontrado (`FileNotFoundException`) y la Inteligencia Artificial no podrá emitir diagnósticos.
 
 ---
 
@@ -124,59 +124,55 @@ Este caso demuestra que el modelo no sufre de sobreajuste y entiende que las glu
 | Glucosa pre-comida | - | 90 | 98 | 95 |
 | Glucosa post-comida | - | 115 | 122 | 112 |
 
-Veredicto Esperado: **RIESGO BAJO (Negativo)**
+* Veredicto Esperado: **RIESGO BAJO (Negativo)**
 
-Caso 2: Prediabetes Basal Asintomática (El peligro silencioso)
+### Caso 2: Prediabetes Basal Asintomática (El peligro silencioso)
 Las glucosas después de comer son perfectas, pero el paciente presenta una alteración en ayunas (108 mg/dL). El sistema demuestra sensibilidad clínica al capturar este riesgo temprano (rango 100-125 de la ADA), activando al notificador.
 
-Edad: 45 | Glucosa Ayunas: 108
+| Variable/Momento día | Edad/Glucosa Ayunas | Mañana | Tarde | Noche |
+|---|---|---|---|---|
+| Edad/Glucosa Ayunas | Edad:45/Glucosa Ayunas: 108 | - | - | - |
+| Carbohidratos | - | 35g | 50g | 30g |
+| Glucosa pre-comida | - | 108 | 90 | 92 |
+| Glucosa post-comida | - | 125 | 130 | 120 |
 
-Mañana: Carb: 35g | Glucosa Pre: 108 | Glucosa Post: 125
+* Veredicto Esperado: **RIESGO ALTO (Prediabetes)**
 
-Tarde: Carb: 50g | Glucosa Pre: 90 | Glucosa Post: 130
-
-Noche: Carb: 30g | Glucosa Pre: 92 | Glucosa Post: 120
-
-Veredicto Esperado: RIESGO ALTO (Prediabetes)
-
-Caso 3: Diabetes Tipo Establecida
+### Caso 3: Diabetes Tipo Establecida
 Caso de diagnóstico claro. Cumple simultáneamente los dos criterios de corte crítico de la ADA: glucosa basal > 126 mg/dL y picos postprandiales > 200 mg/dL.
 
-Edad: 62 | Glucosa Ayunas: 135
+| Variable/Momento día | Edad/Glucosa Ayunas | Mañana | Tarde | Noche |
+|---|---|---|---|---|
+| Edad/Glucosa Ayunas | Edad:62/Glucosa Ayunas: 135 | - | - | - |
+| Carbohidratos | - | 45g | 70g | 40g |
+| Glucosa pre-comida | - | 135 | 120 | 125 |
+| Glucosa post-comida | - | 210 | 235 | 205 |
 
-Mañana: Carb: 45g | Glucosa Pre: 135 | Glucosa Post: 210
+* Veredicto Esperado: **RIESGO ALTO (Positivo Clínico)**
 
-Tarde: Carb: 70g | Glucosa Pre: 120 | Glucosa Post: 235
-
-Noche: Carb: 40g | Glucosa Pre: 125 | Glucosa Post: 205
-
-Veredicto Esperado: RIESGO ALTO (Positivo Clínico)
-
-Caso 4: La Paradoja Postprandial 
+### Caso 4: La Paradoja Postprandial 
 El paciente se levanta con una glucosa excelente (88 mg/dL), lo que confundiría a un sistema simple. Sin embargo, dispara picos de hasta 185 mg/dL por la tarde (Intolerancia a la glucosa). Este caso justifica la decisión arquitectónica de capturar 11 variables diarias en la interfaz, permitiendo a la IA detectar lo que una simple prueba en ayunas pasaría por alto.
 
-Edad: 38 | Glucosa Ayunas: 88
+| Variable/Momento día | Edad/Glucosa Ayunas | Mañana | Tarde | Noche |
+|---|---|---|---|---|
+| Edad/Glucosa Ayunas | Edad:38/Glucosa Ayunas: 88 | - | - | - |
+| Carbohidratos | - | 50g | 80g | 40g |
+| Glucosa pre-comida | - | 88 | 95 | 98 |
+| Glucosa post-comida | - | 165 | 185 | 155 |
 
-Mañana: Carb: 50g | Glucosa Pre: 88 | Glucosa Post: 165
+* Veredicto Esperado: **RIESGO ALTO (Intolerancia a la Glucosa)**
 
-Tarde: Carb: 80g | Glucosa Pre: 95 | Glucosa Post: 185
-
-Noche: Carb: 40g | Glucosa Pre: 98 | Glucosa Post: 155
-
-Veredicto Esperado: RIESGO ALTO (Intolerancia a la Glucosa)
-
-Caso 5:  El Caso Límite Extremo 
+### Caso 5:  El Caso Límite Extremo 
 Este es el test de estrés definitivo para el algoritmo. El paciente está al límite absoluto de la normalidad médica según la ADA: su glucosa en ayunas es 99 mg/dL (el límite es <100) y sus picos post-comida alcanzan los 139 mg/dL (el límite es <140). El sistema demuestra una precisión matemática exacta al clasificarlo como sano, probando que las fronteras de decisión del árbol J48 quedaron perfectamente calibradas y no generan falsos positivos por un solo miligramo de diferencia.
 
-Edad: 31 | Glucosa Ayunas: 99
+| Variable/Momento día | Edad/Glucosa Ayunas | Mañana | Tarde | Noche |
+|---|---|---|---|---|
+| Edad/Glucosa Ayunas | Edad:31/Glucosa Ayunas: 99 | - | - | - |
+| Carbohidratos | - | 45g | 60g | 30g |
+| Glucosa pre-comida | - | 99 | 95 | 92 |
+| Glucosa post-comida | - | 139 | 138 | 139 |
 
-Mañana: Carb: 45g | Glucosa Pre: 99 | Glucosa Post: 139
-
-Tarde: Carb: 60g | Glucosa Pre: 95 | Glucosa Post: 138
-
-Noche: Carb: 30g | Glucosa Pre: 92 | Glucosa Post: 139
-
-Veredicto Esperado: RIESGO BAJO (Negativo)
+* Veredicto Esperado: **RIESGO BAJO (Negativo)**
 
 ---
 
@@ -194,15 +190,11 @@ Para garantizar la autoría del proyecto, el uso de la IA se limitó estrictamen
 
 El uso específico de la IA generativa se desglosa en los siguientes puntos:
 
-Refinamiento y Optimización de Código 
-Resolución de Excepciones del Entorno
-Aumento y Duplicación del Dataset
-Diseño de Escenarios de Prueba Clínicos
-Revisión y adaptación de README y Presentación
-
-
-
-
+* Refinamiento y Optimización de Código 
+* Resolución de Excepciones del Entorno
+* Aumento y Duplicación del Dataset
+* Diseño de Escenarios de Prueba Clínicos
+* Revisión y adaptación de README y Presentación
 
 ### Última actualización README
 
