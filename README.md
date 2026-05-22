@@ -29,114 +29,106 @@ Una vez que cada integrante programó su parte y comprobamos de manera aislada q
 
 Siga estrictamente estos pasos para importar, configurar y dejar el proyecto listo para su compilación en Eclipse sin errores.
 
-	Paso 3.1: Clonar el repositorio en Eclipse
-	Abra Eclipse IDE.
+Paso 3.1: Clonar el repositorio en Eclipse
+Abra Eclipse IDE.
+En el menú superior, diríjase a File > Import...
 
-	En el menú superior, diríjase a File > Import...
+En la ventana emergente, expanda la carpeta Git, seleccione Projects from Git (with smart import) y haga clic 	en 	Next.
 
-	En la ventana emergente, expanda la carpeta Git, seleccione Projects from Git (with smart import) y haga clic 	en 	Next.
+Seleccione Clone URI y haga clic en Next.
 
-	Seleccione Clone URI y haga clic en Next.
+En la casilla URI, pegue exactamente la siguiente dirección URL del repositorio: https://github.com/pcalle23/DiaPredict.git
 
-	En la casilla URI, pegue exactamente la siguiente dirección URL del repositorio: 	https://github.com/pcalle23/DiaPredict.git
+(Los campos de Host y Repository path se rellenarán automáticamente). Haga clic en Next.
 
-	(Los campos de Host y Repository path se rellenarán automáticamente). Haga clic en Next.
+Seleccione la rama master (o asegúrese de que esté marcada), ademas de las demás y haga clic en Next.
 
-	Seleccione la rama master (o asegúrese de que esté marcada), ademas de las demás y haga clic en Next.
+Elija el directorio local de su ordenador donde se guardará el proyecto y haga clic en Next.
 
-	Elija el directorio local de su ordenador donde se guardará el proyecto y haga clic en Next.
+En la última ventana, asegúrese de que la casilla del proyecto está marcada y haga clic en Finish. Eclipse descargará el código y creará el proyecto en su Workspace.
 
-	En la última ventana, asegúrese de que la casilla del proyecto está marcada y haga clic en Finish. 	Eclipse 	descargará el código y creará el proyecto en su Workspace.
+Paso 3.2: Verificación de Dependencias y Configuración del Build Path.
 
-	Paso 3.2: Verificación de Dependencias y Configuración del Build Path.
+El proyecto incluye las librerías necesarias (.jar) directamente en su carpeta raíz. Es obligatorio verificar que Eclipse las ha indexado correctamente en el Classpath para evitar errores de compilación (subrayados rojos en el código).
 
-	El proyecto incluye las librerías necesarias (.jar) directamente en su carpeta raíz. Es obligatorio 	verificar 	que Eclipse las ha indexado correctamente en el Classpath para evitar errores de 	compilación (subrayados 	rojos en el código).
+En el Package Explorer (panel izquierdo), haga clic derecho sobre la carpeta raíz del proyecto 	DiaPredict y seleccione Properties.
 
-	En el Package Explorer (panel izquierdo), haga clic derecho sobre la carpeta raíz del proyecto 	DiaPredict y 	seleccione Properties.
+En el menú izquierdo de la ventana de propiedades, haga clic en Java Build Path.
 
-	En el menú izquierdo de la ventana de propiedades, haga clic en Java Build Path.
+Seleccione la pestaña Libraries en la parte superior.
 
-	Seleccione la pestaña Libraries en la parte superior.
+Asegúrese de desplegar la sección llamada Classpath.
 
-	Asegúrese de desplegar la sección llamada Classpath.
+Compruebe si dentro de Classpath ya aparecen listados los siguientes dos archivos: jade.jar y 	weka.jar
 
-	Compruebe si dentro de Classpath ya aparecen listados los siguientes dos archivos: jade.jar y 	weka.jar
+Si NO aparecen añadidos automáticamente:
 
-	Si NO aparecen añadidos automáticamente:
+Haga clic en el botón Add JARs... situado a la derecha.
 
-	Haga clic en el botón Add JARs... situado a la derecha.
+Navegue dentro de las carpetas de su propio proyecto DiaPredict hasta la raíz.
 
-	Navegue dentro de las carpetas de su propio proyecto DiaPredict hasta la raíz.
+Seleccione los archivos jade.jar y weka.jar.
 
-	Seleccione los archivos jade.jar y weka.jar.
+Haga clic en OK.
 
-	Haga clic en OK.
+Haga clic en el botón Apply and Close. Los subrayados rojos de error en las clases de los agentes deberían 	desaparecer por completo.
 
-	Haga clic en el botón Apply and Close. Los subrayados rojos de error en las clases de los agentes deberían 	desaparecer por completo.
+Paso 3.3: Verificación del Dataset de Inteligencia Artificial (diabetes.arff)
 
-	Paso 3.3: Verificación del Dataset de Inteligencia Artificial (diabetes.arff)
+Para que el AgentePredictor pueda entrenar el modelo de Machine Learning localmente, necesita acceder al archivo de datos históricos.
 
-	Para que el AgentePredictor pueda entrenar el modelo de Machine Learning localmente, necesita acceder al 	archivo de datos históricos.
+En el Package Explorer de Eclipse, asegúrese de que el archivo diabetes.arff se encuentra físicamente en la raíz del proyecto.
 
-	En el Package Explorer de Eclipse, asegúrese de que el archivo diabetes.arff se encuentra físicamente en la raíz 	del proyecto.
-
-	¿Por qué es obligatorio? El AgentePredictor carga este archivo utilizando una ruta relativa en Java. Si el archivo 	se mueve dentro de src o se borra de la raíz, la librería Weka lanzará una excepción de archivo no encontrado 	(FileNotFoundException) y la Inteligencia Artificial no podrá emitir diagnósticos.
+¿Por qué es obligatorio? El AgentePredictor carga este archivo utilizando una ruta relativa en Java. Si el archivo 	se mueve dentro de src o se borra de la raíz, la librería Weka lanzará una excepción de archivo no encontrado (FileNotFoundException) y la Inteligencia Artificial no podrá emitir diagnósticos.
 
 
 4.---Instrucciones de Ejecución---
 
 Para arrancar la plataforma JADE y los agentes del sistema clínico sin que Java bloquee la ejecución por restricciones de seguridad interna, siga estos pasos:
 
-	Paso 4.1: Configuración de los Argumentos de Ejecución (Evitar Excepciones de Java)
+Paso 4.1: Configuración de los Argumentos de Ejecución (Evitar Excepciones de Java)
 
-	Debido a las restricciones de encapsulamiento en las versiones modernas de Java (a partir de Java 9/11+), JADE 	necesita permisos explícitos para acceder a ciertas estructuras internas del sistema. Si no se configuran, el 	programa lanzará una excepción inmediatamente al arrancar.
+Debido a las restricciones de encapsulamiento en las versiones modernas de Java (a partir de Java 9/11+), JADE 	necesita permisos explícitos para acceder a ciertas estructuras internas del sistema. Si no se configuran, el programa lanzará una excepción inmediatamente al arrancar.
 
-	En el Package Explorer, navegue por los paquetes: src > paquete.utils.
+En el Package Explorer, navegue por los paquetes: src > paquete.utils.
 
-	Haga clic derecho sobre el archivo Launcher.java y seleccione Run As > Run Configurations...
+Haga clic derecho sobre el archivo Launcher.java y seleccione Run As > Run Configurations...
 
-	En el panel izquierdo, asegúrese de que está seleccionada la configuración de Java Application correspondiente a 	Launcher.
+En el panel izquierdo, asegúrese de que está seleccionada la configuración de Java Application correspondiente a Launcher.
 
-	En el panel derecho, haga clic en la pestaña Arguments.
+En el panel derecho, haga clic en la pestaña Arguments.
 
-	Busque el cuadro de texto inferior llamado VM arguments: 
-	Pegue exactamente la siguiente variable de apertura en ese cuadro de texto:
-	 --add-opens java.base/java.lang=ALL-UNNAMED
+Busque el cuadro de texto inferior llamado VM arguments: 
+Pegue exactamente la siguiente variable de apertura en ese cuadro de texto: --add-opens java.base/java.lang=ALL-UNNAMED
 
-	Haga clic en el botón Apply para guardar los cambios de forma permanente.
+Haga clic en el botón Apply para guardar los cambios de forma permanente.
 
-	Paso 4.2: Lanzar el Sistema Base
-	Con la configuración guardada, haga clic en el botón Run de esa misma ventana (o en el futuro, haga clic derecho 	en Launcher.java > Run As > Java Application).
+Paso 4.2: Lanzar el Sistema Base
+Con la configuración guardada, haga clic en el botón Run de esa misma ventana (o en el futuro, haga clic derecho en Launcher.java > Run As > Java Application).
 
-	Resultado esperado inmediato:
+Resultado esperado inmediato:
+Se abrirá la consola de Eclipse mostrando la inicialización del contenedor de JADE.
+Se lanzará la interfaz gráfica oficial de monitorización de JADE, donde podrá ver el árbol con el Main-Container.
+Se abrirá automáticamente en su pantalla la primera interfaz gráfica del paciente de manera autónoma, bajo el 	título DiaPredict - AgentePaciente_1.
 
-	Se abrirá la consola de Eclipse mostrando la inicialización del contenedor de JADE.
+Paso 4.3: Escalabilidad en Vivo
+Para poner a prueba la arquitectura multiagente distribuida y el balanceo de carga con múltiples agentes concurrentes, realice los siguientes pasos directamente desde la GUI de JADE:
 
-	Se lanzará la interfaz gráfica oficial de monitorización de JADE, donde podrá ver el árbol con el Main-Container.
+En la ventana del árbol de JADE, despliegue el nodo principal hasta localizar la carpeta Main-Container.
 
-	Se abrirá automáticamente en su pantalla la primera interfaz gráfica del paciente de manera autónoma, bajo el 	título DiaPredict - AgentePaciente_1.
+Haga clic derecho sobre Main-Container y seleccione la opción Start New Agent.
 
+Para crear un nuevo Nutricionista:
+En Agent Name, escriba: AgenteNutricionista_2 (o el número correspondiente).
+En Class Name, escriba exactamente: paquete.agentes.AgenteNutricionista.
+Haga clic en OK.
 
-	Paso 4.3: Escalabilidad en Vivo
-	Para poner a prueba la arquitectura multiagente distribuida y el balanceo de carga con múltiples agentes 	concurrentes, realice los siguientes pasos directamente desde la GUI de JADE:
+Para crear un nuevo Paciente:
+Haga clic derecho de nuevo en Main-Container > Start New Agent.
+En Agent Name, escriba: AgentePaciente_2 (o el número correspondiente).
+En Class Name, escriba exactamente: paquete.agentes.AgentePaciente.
 
-	En la ventana del árbol de JADE, despliegue el nodo principal hasta localizar la carpeta Main-Container.
-
-	Haga clic derecho sobre Main-Container y seleccione la opción Start New Agent.
-
-	Para crear un nuevo Nutricionista:
-	En Agent Name, escriba: AgenteNutricionista_2 (o el número correspondiente).
-	En Class Name, escriba exactamente: paquete.agentes.AgenteNutricionista.
-
-	Haga clic en OK.
-
-	Para crear un nuevo Paciente:
-
-	Haga clic derecho de nuevo en Main-Container > Start New Agent.
-	En Agent Name, escriba: AgentePaciente_2 (o el número correspondiente).
-	En Class Name, escriba exactamente: paquete.agentes.AgentePaciente.
-
-	Haga clic en OK. Se generará una nueva ventana independiente en su pantalla asociada a este nuevo paciente.
+Haga clic en OK. Se generará una nueva ventana independiente en su pantalla asociada a este nuevo paciente.
 
 5.---Datos de ejemplo para ejecutar la práctica---
 
