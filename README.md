@@ -1,12 +1,14 @@
---------DiaPredict - Sistema Multiagente Inteligente para la Gestión y Predicción de Diabetes----------------------
+# DiaPredict - Sistema Multiagente Inteligente para la Gestión y Predicción de Diabetes
 
-1.---Introducción y Datos del Grupo---
+## 1. Introducción y Datos del Grupo
 
-En la carpeta raíz del archivo comprimido (.zip) entregado, se ha adjuntado un documento independiente llamado Autores.txt. En dicho archivo se detallan los nombres completos, correos electrónicos institucionales y DNIs de todos los miembros que componen este grupo de prácticas. Además del puntero a este proyecto de Git.
+En la carpeta raíz del archivo comprimido ('.zip') entregado, se ha adjuntado un documento independiente llamado 'Autores.txt'. En dicho archivo se detallan los nombres completos, correos electrónicos institucionales y DNIs de todos los miembros que componen este grupo de prácticas. Además del puntero a este proyecto de Git.
 
-A continuación, en este archivo README.md, se presenta la documentación técnica, las guías de uso y los detalles de la arquitectura del sistema alojado en este repositorio de GitHub.
+A continuación, en este archivo 'README.md', se presenta la documentación técnica, las guías de uso y los detalles de la arquitectura del sistema alojado en este repositorio de GitHub.
 
-2.---Estructura y Gestión del Repositorio---
+---
+
+## 2. Estructura y Gestión del Repositorio
 
 Para el desarrollo de la práctica, optamos por seguir una metodología de trabajo organizada mediante ramas en Git. El objetivo principal fue dividir el proyecto según los roles de cada integrante para avanzar de forma paralela, evitar conflictos de código y poder probar las funcionalidades de manera aislada antes de integrarlas.
 
@@ -25,7 +27,9 @@ rama-utils: Destinada a las herramientas de configuración y arranque del sistem
 Flujo de Integración:
 Una vez que cada integrante programó su parte y comprobamos de manera aislada que la lógica de cada agente funcionaba correctamente, realizamos el merge hacia la rama master. Con todas las piezas unidas en la rama principal, realizamos las pruebas de integración multiagente, solucionamos las condiciones de carrera y pulimos los últimos detalles del sistema distribuido que se presenta hoy.
 
-3.---Instrucciones de Instalación y Configuración---
+---
+
+## 3. Instrucciones de Instalación y Configuración
 
 Siga estrictamente estos pasos para importar, configurar y dejar el proyecto listo para su compilación en Eclipse sin errores.
 
@@ -81,8 +85,9 @@ En el Package Explorer de Eclipse, asegúrese de que el archivo diabetes.arff se
 
 ¿Por qué es obligatorio? El AgentePredictor carga este archivo utilizando una ruta relativa en Java. Si el archivo 	se mueve dentro de src o se borra de la raíz, la librería Weka lanzará una excepción de archivo no encontrado (FileNotFoundException) y la Inteligencia Artificial no podrá emitir diagnósticos.
 
+---
 
-4.---Instrucciones de Ejecución---
+## 4. Instrucciones de Ejecución
 
 Para arrancar la plataforma JADE y los agentes del sistema clínico sin que Java bloquee la ejecución por restricciones de seguridad interna, siga estos pasos:
 
@@ -130,7 +135,9 @@ En Class Name, escriba exactamente: paquete.agentes.AgentePaciente.
 
 Haga clic en OK. Se generará una nueva ventana independiente en su pantalla asociada a este nuevo paciente.
 
-5.---Datos de ejemplo para ejecutar la práctica---
+---
+
+## 5. Datos de ejemplo para ejecutar la práctica
 
 Para evaluar la robustez del sistema multiagente y la precisión del modelo Weka, se han diseñado varios perfiles de prueba. Estos perfiles ponen a prueba al sistema basándose en las directrices médicas oficiales de la ADA (American Diabetes Association):
 Glucosa Basal (Ayunas): Normal (< 100 mg/dL), Prediabetes (100 - 125 mg/dL), Diabetes (≥ 126 mg/dL).
@@ -203,13 +210,15 @@ Noche: Carb: 30g | Glucosa Pre: 92 | Glucosa Post: 139
 
 Veredicto Esperado: RIESGO BAJO (Negativo)
 
+---
 
-6.---Diagrama de la arquitectura del sistema---
+## 6. Diagrama de la arquitectura del sistema
 
 ![Diagrama de Arquitectura de DiaPredict](ARQUITECTURA-DiaPredict.png)
 
+---
 
-7.--- Declaración de IA ---
+## 7. Declaración de IA 
 
 De acuerdo con las directrices académicas actuales, declaramos de forma transparente que se han utilizado LLMs como herramientas de asistencia durante el desarrollo de esta práctica.
 
