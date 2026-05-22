@@ -80,58 +80,51 @@ Debido a las restricciones de encapsulamiento en las versiones modernas de Java 
 6. Pegue exactamente la siguiente variable de apertura en ese cuadro de texto: 
 ```bash
    --add-opens java.base/java.lang=ALL-UNNAMED
+```
+7. Haga clic en el botón **Apply** para guardar los cambios de forma permanente.
 
-Haga clic en el botón Apply para guardar los cambios de forma permanente.
+### Paso 4.2: Lanzar el Sistema Base
+Con la configuración guardada, haga clic en el botón **Run** de esa misma ventana (o en el futuro, haga clic derecho en `Launcher.java` > **Run As** > **Java Application**).
 
-Paso 4.2: Lanzar el Sistema Base
-Con la configuración guardada, haga clic en el botón Run de esa misma ventana (o en el futuro, haga clic derecho en Launcher.java > Run As > Java Application).
+**Resultado esperado inmediato:**
+Se abrirá la *consola de Eclipse* mostrando la inicialización del contenedor de JADE.
+Se lanzará la *interfaz gráfica* oficial de monitorización de `JADE`, donde podrá ver el árbol con el **Main-Container**.
+Se abrirá automáticamente en su pantalla la primera **interfaz gráfica** del paciente de manera autónoma, bajo el título `DiaPredict - AgentePaciente_1`.
 
-Resultado esperado inmediato:
-Se abrirá la consola de Eclipse mostrando la inicialización del contenedor de JADE.
-Se lanzará la interfaz gráfica oficial de monitorización de JADE, donde podrá ver el árbol con el Main-Container.
-Se abrirá automáticamente en su pantalla la primera interfaz gráfica del paciente de manera autónoma, bajo el 	título DiaPredict - AgentePaciente_1.
-
-Paso 4.3: Escalabilidad en Vivo
+### Paso 4.3: Escalabilidad en Vivo
 Para poner a prueba la arquitectura multiagente distribuida y el balanceo de carga con múltiples agentes concurrentes, realice los siguientes pasos directamente desde la GUI de JADE:
-
-En la ventana del árbol de JADE, despliegue el nodo principal hasta localizar la carpeta Main-Container.
-
-Haga clic derecho sobre Main-Container y seleccione la opción Start New Agent.
-
-Para crear un nuevo Nutricionista:
-En Agent Name, escriba: AgenteNutricionista_2 (o el número correspondiente).
-En Class Name, escriba exactamente: paquete.agentes.AgenteNutricionista.
-Haga clic en OK.
-
-Para crear un nuevo Paciente:
-Haga clic derecho de nuevo en Main-Container > Start New Agent.
-En Agent Name, escriba: AgentePaciente_2 (o el número correspondiente).
-En Class Name, escriba exactamente: paquete.agentes.AgentePaciente.
-
-Haga clic en OK. Se generará una nueva ventana independiente en su pantalla asociada a este nuevo paciente.
+1. En la ventana del árbol de JADE, despliegue el nodo principal hasta localizar la carpeta **Main-Container**.
+2. Haga clic derecho sobre **Main-Container** y seleccione la opción **Start New Agent**.
+3. Para crear un nuevo Nutricionista:
+* En **Agent Name**, escriba: `AgenteNutricionista_2` *(o el número correspondiente)*.
+* En **Class Name**, escriba exactamente: `paquete.agentes.AgenteNutricionista`.
+* Haga clic en **OK**.
+4.Para crear un nuevo Paciente:
+* Haga clic derecho de nuevo en **Main-Container** > **Start New Agent**.
+* En Agent Name, escriba: `AgentePaciente_2` *(o el número correspondiente)*.
+* En Class Name, escriba exactamente: `paquete.agentes.AgentePaciente`.
+* Haga clic en **OK**. Se generará una nueva ventana independiente en su pantalla asociada a este nuevo paciente.
 
 ---
 
 ## 5. Datos de ejemplo para ejecutar la práctica
 
-Para evaluar la robustez del sistema multiagente y la precisión del modelo Weka, se han diseñado varios perfiles de prueba. Estos perfiles ponen a prueba al sistema basándose en las directrices médicas oficiales de la ADA (American Diabetes Association):
-Glucosa Basal (Ayunas): Normal (< 100 mg/dL), Prediabetes (100 - 125 mg/dL), Diabetes (≥ 126 mg/dL).
-Glucosa Postprandial (2h tras comer): Normal (< 140 mg/dL), Prediabetes o Intolerancia (140 - 199 mg/dL), Diabetes (≥ 200 mg/dL).
+Para evaluar la robustez del sistema multiagente y la precisión del modelo Weka, se han diseñado varios perfiles de prueba. Estos perfiles ponen a prueba al sistema basándose en las directrices médicas oficiales de la **ADA (American Diabetes Association)**:
+* **Glucosa Basal (Ayunas)**: Normal (< 100 mg/dL), Prediabetes (100 - 125 mg/dL), Diabetes (≥ 126 mg/dL).
+* **Glucosa Postprandial (2h tras comer)**: Normal (< 140 mg/dL), Prediabetes o Intolerancia (140 - 199 mg/dL), Diabetes (≥ 200 mg/dL).
+Recomendamos introducir los siguientes perfiles en la ventana del `AgentePaciente` para observar las distintas respuestas del sistema:
 
-Recomendamos introducir los siguientes perfiles en la ventana del AgentePaciente para observar las distintas respuestas del sistema:
-
-Caso 1: Paciente Sano con Variabilidad Normal
+### Caso 1: Paciente Sano con Variabilidad Normal
 Este caso demuestra que el modelo no sufre de sobreajuste y entiende que las glucemias pueden oscilar de forma natural si los umbrales críticos se mantienen bajo control.
 
-Edad: 23 | Glucosa Ayunas: 90
+| Variable/Momento día | Edad/Glucosa Ayunas | Mañana | Tarde | Noche |
+|---|---|---|---|---|
+| Edad/Glucosa Ayunas | Edad:23/Glucosa Ayunas: 90 | - | - | - |
+| Carbohidratos | - | 40g | 65g | 35g |
+| Glucosa pre-comida | - | 90 | 98 | 95 |
+| Glucosa post-comida | - | 115 | 122 | 112 |
 
-Mañana: Carb: 40g | Glucosa Pre: 90 | Glucosa Post: 115
-
-Tarde: Carb: 65g | Glucosa Pre: 98 | Glucosa Post: 122
-
-Noche: Carb: 35g | Glucosa Pre: 95 | Glucosa Post: 112
-
-Veredicto Esperado: RIESGO BAJO (Negativo)
+Veredicto Esperado: **RIESGO BAJO (Negativo)**
 
 Caso 2: Prediabetes Basal Asintomática (El peligro silencioso)
 Las glucosas después de comer son perfectas, pero el paciente presenta una alteración en ayunas (108 mg/dL). El sistema demuestra sensibilidad clínica al capturar este riesgo temprano (rango 100-125 de la ADA), activando al notificador.
@@ -205,6 +198,7 @@ Refinamiento y Optimización de Código
 Resolución de Excepciones del Entorno
 Aumento y Duplicación del Dataset
 Diseño de Escenarios de Prueba Clínicos
+Revisión y adaptación de README y Presentación
 
 
 
