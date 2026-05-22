@@ -101,8 +101,7 @@ Para poner a prueba la arquitectura multiagente distribuida y el balanceo de car
 * En **Agent Name**, escriba: `AgenteNutricionista_2` *(o el número correspondiente)*.
 * En **Class Name**, escriba exactamente: `paquete.agentes.AgenteNutricionista`.
 * Haga clic en **OK**.
-
-4.Para crear un nuevo Paciente:
+4. Para crear un nuevo Paciente:
 * Haga clic derecho de nuevo en **Main-Container** > **Start New Agent**.
 * En Agent Name, escriba: `AgentePaciente_2` *(o el número correspondiente)*.
 * En Class Name, escriba exactamente: `paquete.agentes.AgentePaciente`.
