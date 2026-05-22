@@ -2,9 +2,9 @@
 
 ## 1. Introducción y Datos del Grupo
 
-En la carpeta raíz del archivo comprimido (`.zip`) entregado, se ha adjuntado un documento independiente llamado 'Autores.txt'. En dicho archivo se detallan los nombres completos, correos electrónicos institucionales y DNIs de todos los miembros que componen este grupo de prácticas. Además del puntero a este proyecto de Git.
+En la carpeta raíz del archivo comprimido (`.zip`) entregado, se ha adjuntado un documento independiente llamado `Autores.txt`. En dicho archivo se detallan los nombres completos, correos electrónicos institucionales y DNIs de todos los miembros que componen este grupo de prácticas. Además del puntero a este proyecto de Git.
 
-A continuación, en este archivo 'README.md', se presenta la documentación técnica, las guías de uso y los detalles de la arquitectura del sistema alojado en este repositorio de GitHub.
+A continuación, en este archivo `README.md`, se presenta la documentación técnica, las guías de uso y los detalles de la arquitectura del sistema alojado en este repositorio de GitHub.
 
 ---
 
@@ -14,17 +14,17 @@ Para el desarrollo de la práctica, optamos por seguir una metodología de traba
 
 El repositorio se dividió originalmente en 5 ramas:
 
-master: La rama principal. Al inicio contenía la estructura limpia del proyecto y la base de la plataforma JADE proporcionada por el equipo. Al final, se convirtió en la rama de producción donde reside el código definitivo y pulido.
+* **`master`**: La rama principal. Al inicio contenía la estructura limpia del proyecto y la base de la plataforma JADE proporcionada por el equipo. Al final, se convirtió en la rama de producción donde reside el código definitivo y pulido.
 
-rama-agentes: Dedicada a la creación e implementación de los cuatro agentes del sistema (AgentePaciente, AgenteNutricionista, AgentePredictor y AgenteNotificador). Aquí se desarrolló toda la estructura JADE: comunicación mediante mensajes FIPA-ACL, comportamientos cíclicos, registro y búsqueda en el Directory Facilitator (DF) y el balanceo de carga aleatorio.
+* **`rama-agentes`**: Dedicada a la creación e implementación de los cuatro agentes del sistema (AgentePaciente, AgenteNutricionista, AgentePredictor y AgenteNotificador). Aquí se desarrolló toda la estructura JADE: comunicación mediante mensajes FIPA-ACL, comportamientos cíclicos, registro y búsqueda en el Directory Facilitator (DF) y el balanceo de carga aleatorio.
 
-rama-gui: Enfocada exclusivamente en la Interfaz Gráfica de Usuario (Java Swing). Incluye el diseño de la VentanaPaciente, la captura de las variables biomédicas y la conexión de la ventana con el agente subyacente mediante el paso de objetos (comunicación O2A).
+* **`rama-gui`**: Enfocada exclusivamente en la Interfaz Gráfica de Usuario (Java Swing). Incluye el diseño de la VentanaPaciente, la captura de las variables biomédicas y la conexión de la ventana con el agente subyacente mediante el paso de objetos (comunicación O2A).
 
-rama-ia: Centrada única y exclusivamente en la integración de la librería Weka en Java. En esta rama se trabajó el preprocesamiento del dataset, el entrenamiento y la evaluación del modelo de Machine Learning (arbol de decisión J48), que posteriormente se inyectó en la lógica del AgentePredictor.
+* **`rama-ia`**: Centrada única y exclusivamente en la integración de la librería Weka en Java. En esta rama se trabajó el preprocesamiento del dataset, el entrenamiento y la evaluación del modelo de Machine Learning (arbol de decisión J48), que posteriormente se inyectó en la lógica del AgentePredictor.
 
-rama-utils: Destinada a las herramientas de configuración y arranque del sistema. Incluye el desarrollo del Launcher.java, la instanciación del Runtime de JADE y la creación del contenedor principal (Main-Container).
+* **`rama-utils`**: Destinada a las herramientas de configuración y arranque del sistema. Incluye el desarrollo del Launcher.java, la instanciación del Runtime de JADE y la creación del contenedor principal (Main-Container).
 
-Flujo de Integración:
+### Flujo de Integración
 Una vez que cada integrante programó su parte y comprobamos de manera aislada que la lógica de cada agente funcionaba correctamente, realizamos el merge hacia la rama master. Con todas las piezas unidas en la rama principal, realizamos las pruebas de integración multiagente, solucionamos las condiciones de carrera y pulimos los últimos detalles del sistema distribuido que se presenta hoy.
 
 ---
@@ -33,78 +33,53 @@ Una vez que cada integrante programó su parte y comprobamos de manera aislada q
 
 Siga estrictamente estos pasos para importar, configurar y dejar el proyecto listo para su compilación en Eclipse sin errores.
 
-Paso 3.1: Clonar el repositorio en Eclipse
-Abra Eclipse IDE.
-En el menú superior, diríjase a File > Import...
+### Paso 3.1: Clonar el repositorio en Eclipse
+1. Abra Eclipse IDE.
+2. En el menú superior, diríjase a **File > Import...**
+3. En la ventana emergente, expanda la carpeta **Git**, seleccione **Projects from Git (with smart import)** y haga clic 	en 	**Next**.
+4. Seleccione **Clone URI** y haga clic en **Next**.
+5. En la casilla **URI**, pegue exactamente la siguiente dirección URL del repositorio: `https://github.com/pcalle23/DiaPredict.git` *(Los campos de Host y Repository path se rellenarán automáticamente)*. Haga clic en **Next**.
+6. Seleccione la rama `master` (o asegúrese de que esté marcada), ademas de las demás y haga clic en Next.
+7. Elija el *directorio local de su ordenador* donde se guardará el proyecto y haga clic en **Next**.
+8. En la última ventana, asegúrese de que la *casilla del proyecto está marcada* y haga clic en **Finish**. Eclipse descargará el código y creará el proyecto en su Workspace.
 
-En la ventana emergente, expanda la carpeta Git, seleccione Projects from Git (with smart import) y haga clic 	en 	Next.
+### Paso 3.2: Verificación de Dependencias y Configuración del Build Path.
+El proyecto incluye las librerías necesarias (`.jar`) directamente en su carpeta raíz. Es obligatorio *verificar que Eclipse las ha indexado correctamente en el Classpath* para evitar errores de compilación (subrayados rojos en el código).
+1. En el **Package Explorer** (panel izquierdo), haga clic derecho sobre la carpeta raíz del proyecto `DiaPredict` y seleccione *Properties*.
+2. En el menú izquierdo de la ventana de *propiedades*, haga clic en **Java Build Path**.
+3. Seleccione la pestaña **Libraries** en la parte superior.
+4. Asegúrese de desplegar la sección llamada **Classpath**.
+5. Compruebe si dentro de *Classpath* ya aparecen listados los siguientes dos archivos: `jade.jar` y 	`weka.jar`
+6. **Si NO aparecen añadidos automáticamente:**
+* Haga clic en el botón **Add JARs...** situado a la derecha.
+* Navegue dentro de las carpetas de su propio proyecto `DiaPredict` hasta la raíz.
+* Seleccione los archivos `jade.jar` y `weka.jar`.
+* Haga clic en **OK**.
+* Haga clic en el botón **Apply and Close**. Los subrayados rojos de error en las clases de los agentes deberían 	desaparecer por completo.
 
-Seleccione Clone URI y haga clic en Next.
+### Paso 3.3: Verificación del Dataset de Inteligencia Artificial (diabetes.arff)
 
-En la casilla URI, pegue exactamente la siguiente dirección URL del repositorio: https://github.com/pcalle23/DiaPredict.git
+Para que el `AgentePredictor` pueda entrenar el modelo de Machine Learning localmente, necesita acceder al archivo de datos históricos.
 
-(Los campos de Host y Repository path se rellenarán automáticamente). Haga clic en Next.
+* En el **Package Explorer** de Eclipse, asegúrese de que el archivo `diabetes.arff` se encuentra físicamente en la raíz del proyecto.
 
-Seleccione la rama master (o asegúrese de que esté marcada), ademas de las demás y haga clic en Next.
-
-Elija el directorio local de su ordenador donde se guardará el proyecto y haga clic en Next.
-
-En la última ventana, asegúrese de que la casilla del proyecto está marcada y haga clic en Finish. Eclipse descargará el código y creará el proyecto en su Workspace.
-
-Paso 3.2: Verificación de Dependencias y Configuración del Build Path.
-
-El proyecto incluye las librerías necesarias (.jar) directamente en su carpeta raíz. Es obligatorio verificar que Eclipse las ha indexado correctamente en el Classpath para evitar errores de compilación (subrayados rojos en el código).
-
-En el Package Explorer (panel izquierdo), haga clic derecho sobre la carpeta raíz del proyecto 	DiaPredict y seleccione Properties.
-
-En el menú izquierdo de la ventana de propiedades, haga clic en Java Build Path.
-
-Seleccione la pestaña Libraries en la parte superior.
-
-Asegúrese de desplegar la sección llamada Classpath.
-
-Compruebe si dentro de Classpath ya aparecen listados los siguientes dos archivos: jade.jar y 	weka.jar
-
-Si NO aparecen añadidos automáticamente:
-
-Haga clic en el botón Add JARs... situado a la derecha.
-
-Navegue dentro de las carpetas de su propio proyecto DiaPredict hasta la raíz.
-
-Seleccione los archivos jade.jar y weka.jar.
-
-Haga clic en OK.
-
-Haga clic en el botón Apply and Close. Los subrayados rojos de error en las clases de los agentes deberían 	desaparecer por completo.
-
-Paso 3.3: Verificación del Dataset de Inteligencia Artificial (diabetes.arff)
-
-Para que el AgentePredictor pueda entrenar el modelo de Machine Learning localmente, necesita acceder al archivo de datos históricos.
-
-En el Package Explorer de Eclipse, asegúrese de que el archivo diabetes.arff se encuentra físicamente en la raíz del proyecto.
-
-¿Por qué es obligatorio? El AgentePredictor carga este archivo utilizando una ruta relativa en Java. Si el archivo 	se mueve dentro de src o se borra de la raíz, la librería Weka lanzará una excepción de archivo no encontrado (FileNotFoundException) y la Inteligencia Artificial no podrá emitir diagnósticos.
+- *¿Por qué es obligatorio?* El `AgentePredictor` carga este archivo utilizando una ruta relativa en Java. Si el archivo 	se mueve dentro de `src` o se borra de la raíz, la librería Weka lanzará una excepción de archivo no encontrado (`FileNotFoundException`) y la Inteligencia Artificial no podrá emitir diagnósticos.
 
 ---
 
 ## 4. Instrucciones de Ejecución
-
 Para arrancar la plataforma JADE y los agentes del sistema clínico sin que Java bloquee la ejecución por restricciones de seguridad interna, siga estos pasos:
-
-Paso 4.1: Configuración de los Argumentos de Ejecución (Evitar Excepciones de Java)
-
+### Paso 4.1: Configuración de los Argumentos de Ejecución (Evitar Excepciones de Java)
 Debido a las restricciones de encapsulamiento en las versiones modernas de Java (a partir de Java 9/11+), JADE 	necesita permisos explícitos para acceder a ciertas estructuras internas del sistema. Si no se configuran, el programa lanzará una excepción inmediatamente al arrancar.
 
-En el Package Explorer, navegue por los paquetes: src > paquete.utils.
-
-Haga clic derecho sobre el archivo Launcher.java y seleccione Run As > Run Configurations...
-
-En el panel izquierdo, asegúrese de que está seleccionada la configuración de Java Application correspondiente a Launcher.
-
-En el panel derecho, haga clic en la pestaña Arguments.
-
-Busque el cuadro de texto inferior llamado VM arguments: 
-Pegue exactamente la siguiente variable de apertura en ese cuadro de texto: --add-opens java.base/java.lang=ALL-UNNAMED
+1. En el **Package Explorer**, navegue por los paquetes: `src` > `paquete.utils`.
+2. Haga clic derecho sobre el archivo `Launcher.java` y seleccione **Run As > Run Configurations...**
+3. En el panel izquierdo, asegúrese de que está seleccionada la configuración de **Java Application** correspondiente a `Launcher`.
+4. En el panel derecho, haga clic en la pestaña **Arguments**.
+5. Busque el cuadro de texto inferior llamado **VM arguments:** 
+6. Pegue exactamente la siguiente variable de apertura en ese cuadro de texto: 
+```bash
+   --add-opens java.base/java.lang=ALL-UNNAMED
 
 Haga clic en el botón Apply para guardar los cambios de forma permanente.
 
