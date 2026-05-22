@@ -1,5 +1,7 @@
 # DiaPredict - Sistema Multiagente Inteligente para la Gestión y Predicción de Diabetes
 
+![Logo DiaPredict](DiaPredict.png)
+
 ## 1. Introducción y Datos del Grupo
 
 En la carpeta raíz del archivo comprimido (`.zip`) entregado, se ha adjuntado un documento independiente llamado `Autores.txt`. En dicho archivo se detallan los nombres completos, correos electrónicos institucionales y DNIs de todos los miembros que componen este grupo de prácticas. Además del puntero a este proyecto de Git.
