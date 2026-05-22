@@ -2,7 +2,7 @@
 
 ## 1. Introducción y Datos del Grupo
 
-En la carpeta raíz del archivo comprimido ('.zip') entregado, se ha adjuntado un documento independiente llamado 'Autores.txt'. En dicho archivo se detallan los nombres completos, correos electrónicos institucionales y DNIs de todos los miembros que componen este grupo de prácticas. Además del puntero a este proyecto de Git.
+En la carpeta raíz del archivo comprimido (`.zip`) entregado, se ha adjuntado un documento independiente llamado 'Autores.txt'. En dicho archivo se detallan los nombres completos, correos electrónicos institucionales y DNIs de todos los miembros que componen este grupo de prácticas. Además del puntero a este proyecto de Git.
 
 A continuación, en este archivo 'README.md', se presenta la documentación técnica, las guías de uso y los detalles de la arquitectura del sistema alojado en este repositorio de GitHub.
 
