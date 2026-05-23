@@ -121,9 +121,9 @@ Este caso demuestra que el modelo no sufre de sobreajuste y entiende que las glu
 
 | Variable/Momento día | Edad/Glucosa Ayunas | Mañana | Tarde | Noche |
 |---|---|---|---|---|
-| Edad/Glucosa Ayunas | Edad:23/Glucosa Ayunas: 90 | - | - | - |
-| Carbohidratos | - | 40g | 65g | 35g |
+| Edad/Glucosa Ayunas | Edad:23| - | - | - |
 | Glucosa pre-comida | - | 90 | 98 | 95 |
+| Carbohidratos | - | 40g | 65g | 35g |
 | Glucosa post-comida | - | 115 | 122 | 112 |
 
 * Veredicto Esperado: **RIESGO BAJO (Negativo)**
@@ -133,9 +133,9 @@ Las glucosas después de comer son perfectas, pero el paciente presenta una alte
 
 | Variable/Momento día | Edad/Glucosa Ayunas | Mañana | Tarde | Noche |
 |---|---|---|---|---|
-| Edad/Glucosa Ayunas | Edad:45/Glucosa Ayunas: 108 | - | - | - |
-| Carbohidratos | - | 35g | 50g | 30g |
+| Edad/Glucosa Ayunas | Edad:45| - | - | - |
 | Glucosa pre-comida | - | 108 | 90 | 92 |
+| Carbohidratos | - | 35g | 50g | 30g |
 | Glucosa post-comida | - | 125 | 130 | 120 |
 
 * Veredicto Esperado: **RIESGO ALTO (Prediabetes)**
@@ -145,9 +145,9 @@ Caso de diagnóstico claro. Cumple simultáneamente los dos criterios de corte c
 
 | Variable/Momento día | Edad/Glucosa Ayunas | Mañana | Tarde | Noche |
 |---|---|---|---|---|
-| Edad/Glucosa Ayunas | Edad:62/Glucosa Ayunas: 135 | - | - | - |
-| Carbohidratos | - | 45g | 70g | 40g |
+| Edad/Glucosa Ayunas | Edad:62| - | - | - |
 | Glucosa pre-comida | - | 135 | 120 | 125 |
+| Carbohidratos | - | 45g | 70g | 40g |
 | Glucosa post-comida | - | 210 | 235 | 205 |
 
 * Veredicto Esperado: **RIESGO ALTO (Positivo Clínico)**
@@ -157,9 +157,9 @@ El paciente se levanta con una glucosa excelente (88 mg/dL), lo que confundiría
 
 | Variable/Momento día | Edad/Glucosa Ayunas | Mañana | Tarde | Noche |
 |---|---|---|---|---|
-| Edad/Glucosa Ayunas | Edad:38/Glucosa Ayunas: 88 | - | - | - |
-| Carbohidratos | - | 50g | 80g | 40g |
+| Edad/Glucosa Ayunas | Edad:38| - | - | - |
 | Glucosa pre-comida | - | 88 | 95 | 98 |
+| Carbohidratos | - | 50g | 80g | 40g |
 | Glucosa post-comida | - | 165 | 185 | 155 |
 
 * Veredicto Esperado: **RIESGO ALTO (Intolerancia a la Glucosa)**
@@ -169,9 +169,9 @@ Este es el test de estrés definitivo para el algoritmo. El paciente está al l�
 
 | Variable/Momento día | Edad/Glucosa Ayunas | Mañana | Tarde | Noche |
 |---|---|---|---|---|
-| Edad/Glucosa Ayunas | Edad:31/Glucosa Ayunas: 99 | - | - | - |
-| Carbohidratos | - | 45g | 60g | 30g |
+| Edad/Glucosa Ayunas | Edad:31| - | - | - |
 | Glucosa pre-comida | - | 99 | 95 | 92 |
+| Carbohidratos | - | 45g | 60g | 30g |
 | Glucosa post-comida | - | 139 | 138 | 139 |
 
 * Veredicto Esperado: **RIESGO BAJO (Negativo)**
