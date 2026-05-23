@@ -119,9 +119,9 @@ Recomendamos introducir los siguientes perfiles en la ventana del `AgentePacient
 ### Caso 1: Paciente Sano con Variabilidad Normal
 Este caso demuestra que el modelo no sufre de sobreajuste y entiende que las glucemias pueden oscilar de forma natural si los umbrales críticos se mantienen bajo control.
 
-| Variable/Momento día | Edad/Glucosa Ayunas | Mañana | Tarde | Noche |
+| Variable/Momento día | Edad | Mañana | Tarde | Noche |
 |---|---|---|---|---|
-| Edad/Glucosa Ayunas | Edad:23| - | - | - |
+| Edad | Edad:23| - | - | - |
 | Glucosa pre-comida | - | 90 | 98 | 95 |
 | Carbohidratos | - | 40g | 65g | 35g |
 | Glucosa post-comida | - | 115 | 122 | 112 |
@@ -131,9 +131,9 @@ Este caso demuestra que el modelo no sufre de sobreajuste y entiende que las glu
 ### Caso 2: Prediabetes Basal Asintomática (El peligro silencioso)
 Las glucosas después de comer son perfectas, pero el paciente presenta una alteración en ayunas (108 mg/dL). El sistema demuestra sensibilidad clínica al capturar este riesgo temprano (rango 100-125 de la ADA), activando al notificador.
 
-| Variable/Momento día | Edad/Glucosa Ayunas | Mañana | Tarde | Noche |
+| Variable/Momento día | Edad | Mañana | Tarde | Noche |
 |---|---|---|---|---|
-| Edad/Glucosa Ayunas | Edad:45| - | - | - |
+| Edad | Edad:45| - | - | - |
 | Glucosa pre-comida | - | 108 | 90 | 92 |
 | Carbohidratos | - | 35g | 50g | 30g |
 | Glucosa post-comida | - | 125 | 130 | 120 |
@@ -143,9 +143,9 @@ Las glucosas después de comer son perfectas, pero el paciente presenta una alte
 ### Caso 3: Diabetes Tipo Establecida
 Caso de diagnóstico claro. Cumple simultáneamente los dos criterios de corte crítico de la ADA: glucosa basal > 126 mg/dL y picos postprandiales > 200 mg/dL.
 
-| Variable/Momento día | Edad/Glucosa Ayunas | Mañana | Tarde | Noche |
+| Variable/Momento día | Edad | Mañana | Tarde | Noche |
 |---|---|---|---|---|
-| Edad/Glucosa Ayunas | Edad:62| - | - | - |
+| Edad | Edad:62| - | - | - |
 | Glucosa pre-comida | - | 135 | 120 | 125 |
 | Carbohidratos | - | 45g | 70g | 40g |
 | Glucosa post-comida | - | 210 | 235 | 205 |
@@ -155,9 +155,9 @@ Caso de diagnóstico claro. Cumple simultáneamente los dos criterios de corte c
 ### Caso 4: La Paradoja Postprandial 
 El paciente se levanta con una glucosa excelente (88 mg/dL), lo que confundiría a un sistema simple. Sin embargo, dispara picos de hasta 185 mg/dL por la tarde (Intolerancia a la glucosa). Este caso justifica la decisión arquitectónica de capturar 11 variables diarias en la interfaz, permitiendo a la IA detectar lo que una simple prueba en ayunas pasaría por alto.
 
-| Variable/Momento día | Edad/Glucosa Ayunas | Mañana | Tarde | Noche |
+| Variable/Momento día | Edad | Mañana | Tarde | Noche |
 |---|---|---|---|---|
-| Edad/Glucosa Ayunas | Edad:38| - | - | - |
+| Edad | Edad:38| - | - | - |
 | Glucosa pre-comida | - | 88 | 95 | 98 |
 | Carbohidratos | - | 50g | 80g | 40g |
 | Glucosa post-comida | - | 165 | 185 | 155 |
@@ -167,9 +167,9 @@ El paciente se levanta con una glucosa excelente (88 mg/dL), lo que confundiría
 ### Caso 5:  El Caso Límite Extremo 
 Este es el test de estrés definitivo para el algoritmo. El paciente está al límite absoluto de la normalidad médica según la ADA: su glucosa en ayunas es 99 mg/dL (el límite es <100) y sus picos post-comida alcanzan los 139 mg/dL (el límite es <140). El sistema demuestra una precisión matemática exacta al clasificarlo como sano, probando que las fronteras de decisión del árbol J48 quedaron perfectamente calibradas y no generan falsos positivos por un solo miligramo de diferencia.
 
-| Variable/Momento día | Edad/Glucosa Ayunas | Mañana | Tarde | Noche |
+| Variable/Momento día | Edad | Mañana | Tarde | Noche |
 |---|---|---|---|---|
-| Edad/Glucosa Ayunas | Edad:31| - | - | - |
+| Edad | Edad:31| - | - | - |
 | Glucosa pre-comida | - | 99 | 95 | 92 |
 | Carbohidratos | - | 45g | 60g | 30g |
 | Glucosa post-comida | - | 139 | 138 | 139 |
