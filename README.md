@@ -121,7 +121,7 @@ Este caso demuestra que el modelo no sufre de sobreajuste y entiende que las glu
 
 | Variable/Momento día | Edad | Mañana | Tarde | Noche |
 |---|---|---|---|---|
-| Edad | Edad:23| - | - | - |
+| Edad | 23 | - | - | - |
 | Glucosa pre-comida | - | 90 | 98 | 95 |
 | Carbohidratos | - | 40g | 65g | 35g |
 | Glucosa post-comida | - | 115 | 122 | 112 |
@@ -133,7 +133,7 @@ Las glucosas después de comer son perfectas, pero el paciente presenta una alte
 
 | Variable/Momento día | Edad | Mañana | Tarde | Noche |
 |---|---|---|---|---|
-| Edad | Edad:45| - | - | - |
+| Edad | 45 | - | - | - |
 | Glucosa pre-comida | - | 108 | 90 | 92 |
 | Carbohidratos | - | 35g | 50g | 30g |
 | Glucosa post-comida | - | 125 | 130 | 120 |
@@ -145,7 +145,7 @@ Caso de diagnóstico claro. Cumple simultáneamente los dos criterios de corte c
 
 | Variable/Momento día | Edad | Mañana | Tarde | Noche |
 |---|---|---|---|---|
-| Edad | Edad:62| - | - | - |
+| Edad | 62 | - | - | - |
 | Glucosa pre-comida | - | 135 | 120 | 125 |
 | Carbohidratos | - | 45g | 70g | 40g |
 | Glucosa post-comida | - | 210 | 235 | 205 |
@@ -157,7 +157,7 @@ El paciente se levanta con una glucosa excelente (88 mg/dL), lo que confundiría
 
 | Variable/Momento día | Edad | Mañana | Tarde | Noche |
 |---|---|---|---|---|
-| Edad | Edad:38| - | - | - |
+| Edad | 38 | - | - | - |
 | Glucosa pre-comida | - | 88 | 95 | 98 |
 | Carbohidratos | - | 50g | 80g | 40g |
 | Glucosa post-comida | - | 165 | 185 | 155 |
@@ -169,7 +169,7 @@ Este es el test de estrés definitivo para el algoritmo. El paciente está al l�
 
 | Variable/Momento día | Edad | Mañana | Tarde | Noche |
 |---|---|---|---|---|
-| Edad | Edad:31| - | - | - |
+| Edad | 31 | - | - | - |
 | Glucosa pre-comida | - | 99 | 95 | 92 |
 | Carbohidratos | - | 45g | 60g | 30g |
 | Glucosa post-comida | - | 139 | 138 | 139 |
