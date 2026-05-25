@@ -200,5 +200,5 @@ El uso específico de la IA generativa se desglosa en los siguientes puntos:
 
 ### Última actualización README
 
-22 de mayo de 2026
+23 de mayo de 2026
 
